@@ -26,11 +26,11 @@
                 main {
                     display: flex;
                     padding: 20px;
-                    border-radius: 10px;
+                    border-radius: 15px;
                     {% if theme == 'dark' %}
                         background: #202023;
                     {% else %}
-                        background: #F6F8FA;
+                        background: #f0e7db;
                     {% endif %}
                 }
                 .scan-code {
@@ -172,7 +172,9 @@
                     }
 
                     aside {
-                        left: -90px;
+                        {% if scan_code %}
+                            left: -90px;
+                        {% endif %}
                     }
 
                     .bar {
@@ -181,11 +183,15 @@
                     }
 
                     h1 {
-                        max-width: 200px;
+                        max-width: 190px;
                         font-size: 17px;
                     }
                     p {
                         font-size: 13px;
+                    }
+
+                    main {
+                        padding: 15px;
                     }
                 }
 
@@ -196,12 +202,14 @@
                     }
 
                     .scan-code {
-                        margin-left: 40px;
+                        margin-left: 60px;
                         width: 70px;
                     }
 
                     aside {
+                         {% if scan_code %}
                         left: -95px;
+                         {% endif %}
                     }
 
                     section {
@@ -222,7 +230,7 @@
                     }
 
                     main {
-                        height: fit-content;
+                        padding: 10px;
                     }
 
                 }
