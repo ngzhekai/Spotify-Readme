@@ -1,5 +1,8 @@
-<svg width="495" height="160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <foreignObject width="495" height="160">
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+    <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml" class="container">
             <style>
                 /* CSS Reset */
@@ -12,12 +15,20 @@
                     vertical-align: baseline;
                 }
                 /* Actual Styles */
+                .container {
+                    max-width: 495px;
+                    max-height: 160px;
+                    width: 100%;
+                    height: 100%;
+                }
+
+
                 main {
                     display: flex;
                     padding: 20px;
-                    border-radius: 5px;
+                    border-radius: 10px;
                     {% if theme == 'dark' %}
-                        background: #161B22;
+                        background: #202023;
                     {% else %}
                         background: #F6F8FA;
                     {% endif %}
@@ -33,7 +44,8 @@
                     {% endif %}
                 }
                 aside {
-                    width: 485px;
+                    max-width: 485px;
+                    width: 100%;
                     display: flex;
                     position: relative;
                     {% if scan_code %}
@@ -56,7 +68,7 @@
                     {% endif %}
                 }
                 section {
-                    padding-left: 20px;
+                    padding-left: 25px;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -118,9 +130,10 @@
                     border-radius: 3px 3px 0 0;
                     height: 30px;
                     transform-origin: bottom;
+                        margin-left: 10px;
                     animation: resize 0ms -800ms ease-in-out infinite alternate;
                     {% if scan_code %}
-                        width: 21px;
+                        width: 18px;
                     {% else %}
                         width: 20px;
                     {% endif %}
@@ -142,27 +155,107 @@
                         transform: scaleY(1);
                         opacity: .95;
                     }
-                }          
+                }
+                @media (max-width: 450px) {
+                    .cover {
+                        height: 90px;
+                            width: 90px;
+                    }
+
+                    .scan-code {
+                        margin-left: 30px;
+                        width: 90px;
+                    }
+
+                    section {
+                        padding-left: 15px;
+                    }
+
+                    aside {
+                        left: -90px;
+                    }
+
+                    .bar {
+                        width: 12px;
+                        height: 20px;
+                    }
+
+                    h1 {
+                        max-width: 200px;
+                        font-size: 17px;
+                    }
+                    p {
+                        font-size: 13px;
+                    }
+                }
+
+                @media (max-width: 320px) {
+                    .cover {
+                        height: 70px;
+                            width: 70px;
+                    }
+
+                    .scan-code {
+                        margin-left: 40px;
+                        width: 70px;
+                    }
+
+                    aside {
+                        left: -95px;
+                    }
+
+                    section {
+                        padding-left: 10px;
+                    }
+
+                    .bar {
+                        width: 8px;
+                        height: 10px;
+                    }
+
+                    h1 {
+                        font-size: 13px;
+                        max-width: 125px;
+                    }
+                    p {
+                        font-size: 10px;
+                    }
+
+                    main {
+                        height: fit-content;
+                    }
+
+                }
             </style>
             <main>
                 {% if scan_code %}
-                    <img class="scan-code" src="data:image/png;base64, {{scan_code}}" alt="Scan Code" />
+                <img
+                    class="scan-code"
+                    src="data:image/png;base64, {{scan_code}}"
+                    alt="Scan Code"
+                />
                 {% endif %}
                 <aside>
-                    <img class="cover" src="data:image/png;base64, {{image}}" alt="Cover Image" />
+                    <img
+                        class="cover"
+                        src="data:image/png;base64, {{image}}"
+                        alt="Cover Image"
+                    />
                     <section>
                         <div class="info">
                             <div class="top">
                                 {% if not scan_code %}
-                                    <img class="logo" src="data:image/png;base64, {{logo}}" alt="Spotify Logo" />
+                                <img
+                                    class="logo"
+                                    src="data:image/png;base64, {{logo}}"
+                                    alt="Spotify Logo"
+                                />
                                 {% endif %}
                                 <h1>{{song}}</h1>
                             </div>
                             <p>{{artist}}</p>
                         </div>
-                        <div class="bar-container">
-                            {{bars|safe}}
-                        </div>
+                        <div class="bar-container">{{bars|safe}}</div>
                     </section>
                 </aside>
             </main>
